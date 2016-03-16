@@ -13,7 +13,8 @@ body{background:url({$layout_info->background_image}) repeat-x left top;}
 			<a href="{$layout_info->index_url}" cond="!$layout_info->logo_image">{$layout_info->logo_image_alt}</a>
 		</h1>
 		<div class="language">
-			<strong title="{$lang_type}">{$lang_supported[$lang_type]}</strong> <button type="button" class="toggle"><img src="./images/{$layout_info->colorset}/buttonLang.gif" alt="Select Language" width="87" height="15" /></button>
+			<strong title="{$lang_type}">{$lang_supported[$lang_type]}</strong> 
+<!-- 			<button type="button" class="toggle"><img src="./images/{$layout_info->colorset}/buttonLang.gif" alt="Select Language" width="87" height="15" /></button> -->
 <!-- 			<ul class="selectLang"> -->
 <!-- 				<li loop="$lang_supported=>$key,$val" cond="$key!= $lang_type"><button type="button" onclick="doChangeLangType('{$key}');return false;">{$val}</button></li> -->
 <!-- 			</ul> -->
