@@ -4,23 +4,23 @@ $query->setQueryId("getMidInfo");
 $query->setAction("select");
 $query->setPriority("");
 if(isset($args->mid)) {
-${'mid1_argument'} = new ConditionArgument('mid', $args->mid, 'equal');
-${'mid1_argument'}->createConditionValue();
-if(!${'mid1_argument'}->isValid()) return ${'mid1_argument'}->getErrorMessage();
+${'mid14_argument'} = new ConditionArgument('mid', $args->mid, 'equal');
+${'mid14_argument'}->createConditionValue();
+if(!${'mid14_argument'}->isValid()) return ${'mid14_argument'}->getErrorMessage();
 } else
-${'mid1_argument'} = NULL;if(${'mid1_argument'} !== null) ${'mid1_argument'}->setColumnType('varchar');
+${'mid14_argument'} = NULL;if(${'mid14_argument'} !== null) ${'mid14_argument'}->setColumnType('varchar');
 if(isset($args->module_srl)) {
-${'module_srl2_argument'} = new ConditionArgument('module_srl', $args->module_srl, 'equal');
-${'module_srl2_argument'}->createConditionValue();
-if(!${'module_srl2_argument'}->isValid()) return ${'module_srl2_argument'}->getErrorMessage();
+${'module_srl15_argument'} = new ConditionArgument('module_srl', $args->module_srl, 'equal');
+${'module_srl15_argument'}->createConditionValue();
+if(!${'module_srl15_argument'}->isValid()) return ${'module_srl15_argument'}->getErrorMessage();
 } else
-${'module_srl2_argument'} = NULL;if(${'module_srl2_argument'} !== null) ${'module_srl2_argument'}->setColumnType('number');
+${'module_srl15_argument'} = NULL;if(${'module_srl15_argument'} !== null) ${'module_srl15_argument'}->setColumnType('number');
 if(isset($args->site_srl)) {
-${'site_srl3_argument'} = new ConditionArgument('site_srl', $args->site_srl, 'equal');
-${'site_srl3_argument'}->createConditionValue();
-if(!${'site_srl3_argument'}->isValid()) return ${'site_srl3_argument'}->getErrorMessage();
+${'site_srl16_argument'} = new ConditionArgument('site_srl', $args->site_srl, 'equal');
+${'site_srl16_argument'}->createConditionValue();
+if(!${'site_srl16_argument'}->isValid()) return ${'site_srl16_argument'}->getErrorMessage();
 } else
-${'site_srl3_argument'} = NULL;if(${'site_srl3_argument'} !== null) ${'site_srl3_argument'}->setColumnType('number');
+${'site_srl16_argument'} = NULL;if(${'site_srl16_argument'} !== null) ${'site_srl16_argument'}->setColumnType('number');
 
 $query->setColumns(array(
 new StarExpression()
@@ -30,9 +30,9 @@ new Table('`xe_modules`', '`modules`')
 ));
 $query->setConditions(array(
 new ConditionGroup(array(
-new ConditionWithArgument('`mid`',$mid1_argument,"equal")
-,new ConditionWithArgument('`module_srl`',$module_srl2_argument,"equal", 'and')
-,new ConditionWithArgument('`site_srl`',$site_srl3_argument,"equal", 'and')))
+new ConditionWithArgument('`mid`',$mid14_argument,"equal")
+,new ConditionWithArgument('`module_srl`',$module_srl15_argument,"equal", 'and')
+,new ConditionWithArgument('`site_srl`',$site_srl16_argument,"equal", 'and')))
 ));
 $query->setGroups(array());
 $query->setOrder(array());

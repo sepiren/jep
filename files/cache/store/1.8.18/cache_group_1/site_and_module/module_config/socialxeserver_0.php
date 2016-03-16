@@ -1,3 +1,3 @@
 <?php
 if(!defined('__XE__')) { exit(); }
-return 'N;';
+return 'O:8:\"stdClass\":6:{s:7:\"_filter\";s:13:\"insert_config\";s:16:\"error_return_url\";s:57:\"/index.php?module=admin&act=dispSocialxeserverAdminConfig\";s:3:\"act\";s:35:\"procSocialxeserverAdminInsertConfig\";s:16:\"google_client_id\";s:72:\"901872542156-l43rnlajp3tgup8lloagvof2de46djcf.apps.googleusercontent.com\";s:20:\"google_client_secret\";s:24:\"W53UnI5u3pFyGz0A_OQo4bTe\";s:6:\"module\";s:14:\"socialxeserver\";}';

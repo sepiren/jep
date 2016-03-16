@@ -4,31 +4,31 @@ $query->setQueryId("insertModulePartConfig");
 $query->setAction("insert");
 $query->setPriority("");
 
-${'module26_argument'} = new Argument('module', $args->{'module'});
-${'module26_argument'}->checkNotNull();
-if(!${'module26_argument'}->isValid()) return ${'module26_argument'}->getErrorMessage();
-if(${'module26_argument'} !== null) ${'module26_argument'}->setColumnType('varchar');
+${'module3_argument'} = new Argument('module', $args->{'module'});
+${'module3_argument'}->checkNotNull();
+if(!${'module3_argument'}->isValid()) return ${'module3_argument'}->getErrorMessage();
+if(${'module3_argument'} !== null) ${'module3_argument'}->setColumnType('varchar');
 
-${'module_srl27_argument'} = new Argument('module_srl', $args->{'module_srl'});
-${'module_srl27_argument'}->checkNotNull();
-if(!${'module_srl27_argument'}->isValid()) return ${'module_srl27_argument'}->getErrorMessage();
-if(${'module_srl27_argument'} !== null) ${'module_srl27_argument'}->setColumnType('number');
+${'module_srl4_argument'} = new Argument('module_srl', $args->{'module_srl'});
+${'module_srl4_argument'}->checkNotNull();
+if(!${'module_srl4_argument'}->isValid()) return ${'module_srl4_argument'}->getErrorMessage();
+if(${'module_srl4_argument'} !== null) ${'module_srl4_argument'}->setColumnType('number');
 if(isset($args->config)) {
-${'config28_argument'} = new Argument('config', $args->{'config'});
-if(!${'config28_argument'}->isValid()) return ${'config28_argument'}->getErrorMessage();
+${'config5_argument'} = new Argument('config', $args->{'config'});
+if(!${'config5_argument'}->isValid()) return ${'config5_argument'}->getErrorMessage();
 } else
-${'config28_argument'} = NULL;if(${'config28_argument'} !== null) ${'config28_argument'}->setColumnType('text');
+${'config5_argument'} = NULL;if(${'config5_argument'} !== null) ${'config5_argument'}->setColumnType('text');
 
-${'regdate29_argument'} = new Argument('regdate', $args->{'regdate'});
-${'regdate29_argument'}->ensureDefaultValue(date("YmdHis"));
-if(!${'regdate29_argument'}->isValid()) return ${'regdate29_argument'}->getErrorMessage();
-if(${'regdate29_argument'} !== null) ${'regdate29_argument'}->setColumnType('date');
+${'regdate6_argument'} = new Argument('regdate', $args->{'regdate'});
+${'regdate6_argument'}->ensureDefaultValue(date("YmdHis"));
+if(!${'regdate6_argument'}->isValid()) return ${'regdate6_argument'}->getErrorMessage();
+if(${'regdate6_argument'} !== null) ${'regdate6_argument'}->setColumnType('date');
 
 $query->setColumns(array(
-new InsertExpression('`module`', ${'module26_argument'})
-,new InsertExpression('`module_srl`', ${'module_srl27_argument'})
-,new InsertExpression('`config`', ${'config28_argument'})
-,new InsertExpression('`regdate`', ${'regdate29_argument'})
+new InsertExpression('`module`', ${'module3_argument'})
+,new InsertExpression('`module_srl`', ${'module_srl4_argument'})
+,new InsertExpression('`config`', ${'config5_argument'})
+,new InsertExpression('`regdate`', ${'regdate6_argument'})
 ));
 $query->setTables(array(
 new Table('`xe_module_part_config`', '`module_part_config`')
