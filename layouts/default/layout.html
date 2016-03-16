@@ -2,6 +2,7 @@
 <load target="default.layout.webfont.css" cond="$layout_info->WEB_FONT == 'YES'" />
 <load target="../../common/js/respond.min.js" targetie="lt IE 9" />
 <load target="default.layout.js" type="body" />
+<div cond="$is_logged">
 <div class="container">
 	<p class="skip"><a href="#content">{$lang->skip_to_content}</a></p>
 	<header class="header">
@@ -107,3 +108,35 @@
 	<p cond="!$layout_info->FOOTER">Powered by <a href="http://xpressengine.com/">XE</a>.</p>
 	<p cond="$layout_info->FOOTER">{$layout_info->FOOTER}</p>
 </footer>
+</div>
+
+<!-- 로그인 세션이 없을 경우 로그인 창 -->
+
+<div cond="!$is_logged">
+<div cond="!$act">
+<form id="fo_login_widget" action="./" method="post" ruleset="@login" class="widgetLogin">
+ <input type="hidden" name="act" value="member" />
+ <input type="hidden" name="act" value="procMemberLogin" />
+ <input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
+ <fieldset>
+  <dl>
+   <dt><label for="uid">{$lang->user_id} :</label></dt>
+   <dd><input name="user_id" type="text" id="uid" class="widgetXeInputText" title="{$lang->user_id}" /></dd>
+   <dt><label for="upw">{$lang->password} :</label></dt>
+   <dd><input name="password" type="password" id="upw" class="widgetXeInputText" title="{$lang->password}" /></dd>
+  </dl>
+  <span class="button login"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
+  <ul class="help">
+   <li><a href="{$request_uri}?mid=member_sign&act=dispMemberSignUpForm">{$lang->cmd_signup}</a></li>
+   <li><a href="{$request_uri}?mid=member_find&act=dispMemberFindAccount">{$lang->cmd_find_member_account}</a></li>
+   <li><a href="{$request_uri}?mid=member_resend_mail&act=dispMemberResendAuthMail">{$lang->cmd_resend_auth_mail}</a></li>
+  </ul>
+ </fieldset>
+</form>
+</div>
+<div cond="$act">
+ <div id="container">
+  <div id="center_c" class="center_contents">{$content}</div>
+ </div>
+</div>
+</div>
