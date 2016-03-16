@@ -114,25 +114,7 @@
 
 <div cond="!$is_logged">
 <div cond="!$act">
-<form id="fo_login_widget" action="./" method="post" ruleset="@login" class="widgetLogin">
- <input type="hidden" name="act" value="member" />
- <input type="hidden" name="act" value="procMemberLogin" />
- <input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
- <fieldset>
-  <dl>
-   <dt><label for="uid">{$lang->user_id} :</label></dt>
-   <dd><input name="user_id" type="text" id="uid" class="widgetXeInputText" title="{$lang->user_id}" /></dd>
-   <dt><label for="upw">{$lang->password} :</label></dt>
-   <dd><input name="password" type="password" id="upw" class="widgetXeInputText" title="{$lang->password}" /></dd>
-  </dl>
-  <span class="button login"><input name="" type="submit" value="{$lang->cmd_login}" /></span>
-  <ul class="help">
-   <li><a href="{$request_uri}?mid=member_sign&act=dispMemberSignUpForm">{$lang->cmd_signup}</a></li>
-   <li><a href="{$request_uri}?mid=member_find&act=dispMemberFindAccount">{$lang->cmd_find_member_account}</a></li>
-   <li><a href="{$request_uri}?mid=member_resend_mail&act=dispMemberResendAuthMail">{$lang->cmd_resend_auth_mail}</a></li>
-  </ul>
- </fieldset>
-</form>
+<a href="http://ep.jangin.com/?act=dispSocialxeConnectSns&type=login&service=google">구글 로그인</a>
 </div>
 <div cond="$act">
  <div id="container">
