@@ -45,10 +45,10 @@ function attachSignin(element) {
 		console.log("ID Token: " + id_token);
 
 		var xhr = new XMLHttpRequest();
-//		xhr.open('POST', '/login');
-//		xhr.setRequestHeader('Content-Type',
-//				'application/x-www-form-urlencoded');
-//		xhr.send('idtoken=' + id_token + '&os=' + OSInfoDev() + '&browser=' + browser());
+		xhr.open('POST', '/login');
+		xhr.setRequestHeader('Content-Type',
+				'application/x-www-form-urlencoded');
+		xhr.send('idtoken=' + id_token);
 		xhr.onload = function() {
 			console.log('Signed in as: ' + xhr.responseText);
 			//location.href = '/index';
