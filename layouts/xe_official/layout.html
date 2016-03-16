@@ -12,13 +12,13 @@ body{background:url({$layout_info->background_image}) repeat-x left top;}
 			<a href="{$layout_info->index_url}" cond="$layout_info->logo_image"><img src="{$layout_info->logo_image}" alt="logo" border="0" /></a>
 			<a href="{$layout_info->index_url}" cond="!$layout_info->logo_image">{$layout_info->logo_image_alt}</a>
 		</h1>
-		<div class="language">
-			<strong title="{$lang_type}">{$lang_supported[$lang_type]}</strong> 
+<!-- 		<div class="language"> -->
+<!-- 			<strong title="{$lang_type}">{$lang_supported[$lang_type]}</strong>  -->
 <!-- 			<button type="button" class="toggle"><img src="./images/{$layout_info->colorset}/buttonLang.gif" alt="Select Language" width="87" height="15" /></button> -->
 <!-- 			<ul class="selectLang"> -->
 <!-- 				<li loop="$lang_supported=>$key,$val" cond="$key!= $lang_type"><button type="button" onclick="doChangeLangType('{$key}');return false;">{$val}</button></li> -->
 <!-- 			</ul> -->
-		</div>
+<!-- 		</div> -->
 		<div class="gnb">
 			<ul>
 				<li loop="$main_menu->list=>$key1,$val1" class="active"|cond="$val1['selected']"><a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
