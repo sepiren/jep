@@ -2,9 +2,10 @@
 <?php require_once('./classes/xml/XmlJsFilter.class.php');$__xmlFilter=new XmlJsFilter('widgets/login_info/skins/default','login.xml');$__xmlFilter->compile(); ?>
 <!--#Meta:widgets/login_info/skins/default/default.login.js--><?php $__tmp=array('widgets/login_info/skins/default/default.login.js','','','');Context::loadFile($__tmp);unset($__tmp); ?>
 <?php Context::addJsFile("./files/ruleset/login.xml", FALSE, "", 0, "body", TRUE, "") ?><form id="fo_login_widget" action="<?php echo getUrl('','act','procMemberLogin') ?>" method="post"  class="account"><input type="hidden" name="error_return_url" value="<?php echo htmlspecialchars(getRequestUriByServerEnviroment(), ENT_COMPAT | ENT_HTML401, 'UTF-8', false) ?>" /><input type="hidden" name="mid" value="<?php echo $__Context->mid ?>" /><input type="hidden" name="vid" value="<?php echo $__Context->vid ?>" /><input type="hidden" name="ruleset" value="@login" />
-	<a href="#acField"><?php echo $__Context->lang->cmd_login ?></a>
+<!-- 	<a href="#acField"><?php echo $__Context->lang->cmd_login ?></a> -->
+	<a href="<?php echo getUrl('act','dispMemberLoginForm') ?>"><?php echo $__Context->lang->cmd_login ?></a>
 	<fieldset id="acField">
-		<h2><?php echo $__Context->lang->cmd_login ?> TEST</h2>
+		<h2><?php echo $__Context->lang->cmd_login ?></h2>
 		<input type="hidden" name="act" value="procMemberLogin" />
 		<input type="hidden" name="success_return_url" value="<?php echo htmlspecialchars(getRequestUriByServerEnviroment(), ENT_COMPAT | ENT_HTML401, 'UTF-8', false) ?>" />
 		<input type="hidden" name="xe_validator_id" value="widgets/login_info/skins/default/login_form/1" />

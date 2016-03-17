@@ -24,8 +24,18 @@ $db_info = (object)array (
     ),
   ),
   'default_url' => 'http://ep.jangin.com/',
-  'lang_type' => 'ko',
   'use_mobile_view' => 'Y',
   'use_rewrite' => 'N',
   'time_zone' => '+0900',
+  'use_prepared_statements' => 'Y',
+  'qmail_compatibility' => 'N',
+  'use_db_session' => 'N',
+  'use_ssl' => 'none',
+  'sitelock_whitelist' => 
+  array (
+    0 => '127.0.0.1',
+  ),
+  'use_sso' => 'N',
+  'use_html5' => 'N',
+  'admin_ip_list' => NULL,
 );

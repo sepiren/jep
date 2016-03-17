@@ -1,6 +1,6 @@
 <?php if(!defined("__XE__")) exit();
 $designInfo = new stdClass;
-$designInfo->layout_srl = 141; 
+$designInfo->layout_srl = 131; 
 $designInfo->mlayout_srl = 90;
 $designInfo->module = new stdClass;
 $designInfo->module->page = new stdClass;
@@ -27,6 +27,7 @@ $designInfo->module->poll = new stdClass;
 $designInfo->module->poll->skin = 'default';
 $designInfo->module->socialxe = new stdClass;
 $designInfo->module->socialxe->skin = 'default';
+$designInfo->module->socialxe->mskin = 'default';
 $designInfo->module->socialxeserver = new stdClass;
 $designInfo->module->socialxeserver->skin = 'default';
 $designInfo->module->socialxeserver->mskin = 'default';

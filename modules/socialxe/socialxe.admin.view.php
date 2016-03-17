@@ -1,61 +1,170 @@
 <?php
-
-	class socialxeAdminView extends socialxe {
-
+	/**
+	 * @class  socialxeAdminView
+     * @author CONORY (http://www.conory.com)
+	 * @brief The admin view class of the socialxe module
+	 */
+	 
+	class socialxeAdminView extends socialxe
+	{
 		/**
-		* @brief 초기화
-		**/
-		function init() {
-		}
-
-		/**
-		* @brief 설정
-		**/
-		function dispSocialxeAdminConfig() {
-			// 설정 정보를 받아옴
-			Context::set('config',$this->config);
-
-			// 서비스 목록
-			$provider_list = $this->providerManager->getFullProviderList();
-			Context::set('provider_list', $provider_list); //여기서 provider_list 를 셋하면 index.html 에서 $provider_list 로 엑세스 가능
-
-			// 스킨 리스트
-			$oModuleModel = &getModel('module');
-			$skin_list = $oModuleModel->getSkins($this->module_path);
-			Context::set('skin_list', $skin_list);
-
-			// 템플릿 파일 지정
+		 * @brief Initialization
+		 */
+		function init()
+		{
+			Context::set('config', $this->config);
+			
+		    //�αױ�� �ڵ�����
+            if($this->module_config->delete_auto_log_record){
+				$args = new stdClass();
+                $args->regdate_less = date("YmdHis",strtotime(sprintf('-%d day',$this->module_config->delete_auto_log_record)));
+                executeQuery('socialxe.deleteLogRecordLess', $args);
+            }
+			
 			$this->setTemplatePath($this->module_path.'tpl');
-			$this->setTemplateFile('index');
+			Context::addJsFile($this->module_path.'tpl/js/socialxe_admin.js');
 		}
-
-		// bit.ly 통계
-		function dispSocialxeAdminBitly(){
-			// 설정 정보를 받아옴
-			Context::set('config',$this->config);
-
-			// bit.ly 설정이 되어 있지 않으면 환경설정으로 보낸다.
-			if (!$this->config->bitly_username || !$this->config->bitly_api_key){
-				header('Location: ' . getNotEncodedUrl('act', 'dispSocialxeAdminConfig'));
-				return;
+		
+		/**
+		 * @brief API ����
+		 */
+		function dispSocialxeAdminSettingApi()
+		{
+			
+			$this->setTemplateFile('api_setting');
+		}
+		
+		/**
+		 * @brief ȯ�漳��
+		 */
+		function dispSocialxeAdminSetting()
+		{
+			$oModuleModel = getModel('module');
+			
+			$oLayoutModel = getModel('layout');
+			$layout_list = $oLayoutModel->getLayoutList();
+			Context::set('layout_list', $layout_list);
+			
+			$mlayout_list = $oLayoutModel->getLayoutList(0, 'M');
+			Context::set('mlayout_list', $mlayout_list);
+			
+			//��Ų
+            $skin_list = $oModuleModel->getSkins($this->module_path);
+            Context::set('skin_list',$skin_list);
+			
+			//�����
+			$mskin_list = $oModuleModel->getSkins($this->module_path, "m.skins");
+			Context::set('mskin_list', $mskin_list);
+			
+			Context::set('default_services', $this->default_services);
+			
+			//�߰����� �Է�
+			$input_add_info = array('agreement','user_id','nick_name','require_add_info');
+			Context::set('input_add_info', $input_add_info);
+			
+			$this->setTemplateFile('setting');
+		}
+		
+		/**
+		 * @brief �αױ��
+		 */
+		function dispSocialxeAdminLogRecord()
+		{
+		    $oMemberModel = getModel('member');
+			
+			//�α� ī�װ���
+			$category_list = array('auth_request','register','sns_clear','login','linkage','delete_member','unknown');
+            Context::set('category_list', $category_list);
+			
+            //�˻��ɼ�
+            $search_option = array('email','nick_name','content','ipaddress');
+            Context::set('search_option', $search_option);
+			
+			$args = new stdClass;
+			$search_keyword = Context::get('search_keyword');
+			$search_target = Context::get('search_target');			
+            if($search_target && $search_keyword) {
+				if($search_target == 'email') {
+					$args->member_srl = $oMemberModel->getMemberSrlByEmailAddress($search_keyword);
+					if(!$args->member_srl) $args->member_srl = 0;
+					
+				}elseif($search_target == 'nick_name') {
+					$args->member_srl = $oMemberModel->getMemberSrlByNickName($search_keyword);
+					if(!$args->member_srl) $args->member_srl = 0;
+					
+				}elseif($search_target == 'content') {
+					$args->content = $search_keyword;	
+					
+				}elseif($search_target == 'ipaddress') {
+					$args->ipaddress = $search_keyword;	
+				}	
+            }
+			
+			$args->category = Context::get('search_category');
+		    $args->page = Context::get('page');
+            $output = executeQuery('socialxe.getLogRecordList',$args);
+			
+			if($output->data){
+				foreach($output->data as $key=> $val){
+					if($val->member_srl){
+						$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
+						$val->nick_name = $member_info->nick_name;
+					}
+					$output->data[$key] = $val;	
+				}
 			}
-
-			// 목록을 구하기 위한 옵션
-			$args->page = Context::get('page');
-			$args->title = Context::get('title');
-			$output = executeQueryArray('socialxe.getBitlyPageList', $args);
-			if (!$output->toBool()) return $output;
-
-			// 템플릿에 쓰기 위해서 comment_model::getTotalCommentList() 의 return object에 있는 값들을 세팅
-			Context::set('total_count', $output->total_count);
-			Context::set('total_page', $output->total_page);
-			Context::set('page', $output->page);
-			Context::set('bitly_list', $output->data);
-			Context::set('page_navigation', $output->page_navigation);
-
-			// 템플릿 파일 지정
-			$this->setTemplatePath($this->module_path.'tpl');
-			$this->setTemplateFile('bitly_index');
+			
+            Context::set('total_count', $output->page_navigation->total_count);
+            Context::set('total_page', $output->page_navigation->total_page);
+            Context::set('page', $output->page);
+            Context::set('log_record_list', $output->data);
+            Context::set('page_navigation', $output->page_navigation);
+			
+			$this->setTemplateFile('log_record');
+		}
+		
+		/**
+		 * @brief SNS ���
+		 */
+		function dispSocialxeAdminSnsList()
+		{
+			$oSocialxeModel = getModel('socialxe');
+			
+			Context::set('sns_services', $this->config->sns_services);
+			
+            //�˻��ɼ�
+            $search_option = array('nick_name','email');
+            Context::set('search_option', $search_option);
+			
+			$args = new stdClass();
+			$search_keyword = Context::get('search_keyword');
+			$search_target = Context::get('search_target');	
+            if($search_target && $search_keyword){
+				$args->{$search_target} = $search_keyword;
+            }
+			
+		    $args->page = Context::get('page');
+            $output = executeQuery('socialxe.getMemberSnsList',$args);
+			if($output->data){
+				foreach($output->data as $key=> $val){
+					foreach($this->config->sns_services as $key2=> $val2){
+						$sns_info = $oSocialxeModel->getMemberSns($val2, $val->member_srl);
+						if(!$sns_info){
+							$val->{'service_'.$val2} = Context::getLang('status_sns_no_register');
+						}else{
+							$val->{'service_'.$val2} = sprintf('<a href="%s" target="_blank">%s</a>',$sns_info->profile_url, $sns_info->name);
+						}
+					}
+					$output->data[$key] = $val;	
+				}
+			}
+			
+            Context::set('total_count', $output->page_navigation->total_count);
+            Context::set('total_page', $output->page_navigation->total_page);
+            Context::set('page', $output->page);
+            Context::set('sns_list', $output->data);
+            Context::set('page_navigation', $output->page_navigation);
+			
+			$this->setTemplateFile('sns_list');
 		}
 	}
-?>

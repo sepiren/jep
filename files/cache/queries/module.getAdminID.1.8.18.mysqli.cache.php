@@ -4,11 +4,11 @@ $query->setQueryId("getAdminID");
 $query->setAction("select");
 $query->setPriority("");
 
-${'module_srl2_argument'} = new ConditionArgument('module_srl', $args->module_srl, 'equal');
-${'module_srl2_argument'}->checkNotNull();
-${'module_srl2_argument'}->createConditionValue();
-if(!${'module_srl2_argument'}->isValid()) return ${'module_srl2_argument'}->getErrorMessage();
-if(${'module_srl2_argument'} !== null) ${'module_srl2_argument'}->setColumnType('number');
+${'module_srl3_argument'} = new ConditionArgument('module_srl', $args->module_srl, 'equal');
+${'module_srl3_argument'}->checkNotNull();
+${'module_srl3_argument'}->createConditionValue();
+if(!${'module_srl3_argument'}->isValid()) return ${'module_srl3_argument'}->getErrorMessage();
+if(${'module_srl3_argument'} !== null) ${'module_srl3_argument'}->setColumnType('number');
 
 $query->setColumns(array(
 new StarExpression()
@@ -19,7 +19,7 @@ new Table('`xe_module_admins`', '`module_admins`')
 ));
 $query->setConditions(array(
 new ConditionGroup(array(
-new ConditionWithArgument('`module_srl`',$module_srl2_argument,"equal")
+new ConditionWithArgument('`module_srl`',$module_srl3_argument,"equal")
 ,new ConditionWithoutArgument('`member`.`member_srl`','`module_admins`.`member_srl`',"equal", 'and')))
 ));
 $query->setGroups(array());

@@ -3,6 +3,7 @@
 } ?>
 <!--#Meta:common/js/respond.min.js--><?php $__tmp=array('common/js/respond.min.js','','lt IE 9','');Context::loadFile($__tmp);unset($__tmp); ?>
 <!--#Meta:layouts/default/default.layout.js--><?php $__tmp=array('layouts/default/default.layout.js','body','','');Context::loadFile($__tmp);unset($__tmp); ?>
+<?php if($__Context->is_logged){ ?><div>
 <div class="container">
 	<p class="skip"><a href="#content"><?php echo $__Context->lang->skip_to_content ?></a></p>
 	<header class="header">
@@ -117,3 +118,15 @@ if($__Context->val1['selected'] && $__Context->val1['list']){ ?><ul>
 	<?php if(!$__Context->layout_info->FOOTER){ ?><p>Powered by <a href="http://xpressengine.com/">XE</a>.</p><?php } ?>
 	<?php if($__Context->layout_info->FOOTER){ ?><p><?php echo $__Context->layout_info->FOOTER ?></p><?php } ?>
 </footer>
+</div><?php } ?>
+<!-- 로그인 세션이 없을 경우 로그인 창 -->
+<?php if(!$__Context->is_logged){ ?><div>
+<?php if(!$__Context->act){ ?><div>
+<a href="http://ep.jangin.com/?act=dispSocialxeConnectSns&type=login&service=google">구글 로그인</a>
+</div><?php } ?>
+<?php if($__Context->act){ ?><div>
+ <div id="container">
+  <div id="center_c" class="center_contents"><?php echo $__Context->content ?></div>
+ </div>
+</div><?php } ?>
+</div><?php } ?>
