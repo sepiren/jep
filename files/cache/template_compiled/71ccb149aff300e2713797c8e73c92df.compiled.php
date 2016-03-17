@@ -20,23 +20,24 @@ $__tpl=TemplateHandler::getInstance();echo $__tpl->compile('modules/member/skins
 					<input type="password" name="password" id="upw" required placeholder="<?php echo $__Context->lang->password ?>" title="<?php echo $__Context->lang->password ?>" />
 				</div>
 				<div class="control-group">
-					<label for="keepid_opt">
-						<input type="checkbox" name="keep_signed" id="keepid_opt" value="Y" />
-						<?php echo $__Context->lang->keep_signed ?>
-					</label>
-					<div id="warning">
-						<p><?php echo $__Context->lang->about_keep_warning ?></p>
-					</div>
+<!-- 					<label for="keepid_opt"> -->
+<!-- 						<input type="checkbox" name="keep_signed" id="keepid_opt" value="Y" /> -->
+<!-- 						<?php echo $__Context->lang->keep_signed ?> -->
+<!-- 					</label> -->
+<!-- 					<div id="warning"> -->
+<!-- 						<p><?php echo $__Context->lang->about_keep_warning ?></p> -->
+<!-- 					</div> -->
+					<p><br /></p>
 					<input type="submit" value="<?php echo $__Context->lang->cmd_login ?>" class="submit btn btn-inverse" />
 				</div>
 			</fieldset>
 		</form>
 	</div>
-	<div class="login-footer">
-		<a href="<?php echo getUrl('act','dispMemberFindAccount') ?>"><?php echo $__Context->lang->cmd_find_member_account ?></a>
-		|
-		<a href="<?php echo getUrl('act','dispMemberSignUpForm') ?>"><?php echo $__Context->lang->cmd_signup ?></a>
-	</div>
+<!-- 	<div class="login-footer"> -->
+<!-- 		<a href="<?php echo getUrl('act','dispMemberFindAccount') ?>"><?php echo $__Context->lang->cmd_find_member_account ?></a> -->
+<!-- 		| -->
+<!-- 		<a href="<?php echo getUrl('act','dispMemberSignUpForm') ?>"><?php echo $__Context->lang->cmd_signup ?></a> -->
+<!-- 	</div> -->
 </div>
 <script>
 jQuery(function($){
