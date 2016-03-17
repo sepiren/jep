@@ -323,8 +323,8 @@
 			}
 			
 			// @jangin.com 검사
-			if(strpos($profile['email'], '@jangin.com') === false || $email == ''){
-				$error = $email;
+			if(strpos($email, '@jangin.com') === false || $email == ''){
+				$error = 'msg_no_permission_email_address';
 				$oLibrary->revokeToken();
 			}
 			
