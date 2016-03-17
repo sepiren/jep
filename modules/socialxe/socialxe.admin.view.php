@@ -14,7 +14,7 @@
 		{
 			Context::set('config', $this->config);
 			
-		    //·Î±×±â·Ï ÀÚµ¿»èÁ¦
+		    //ë¡œê·¸ê¸°ë¡ ìžë™ì‚­ì œ
             if($this->module_config->delete_auto_log_record){
 				$args = new stdClass();
                 $args->regdate_less = date("YmdHis",strtotime(sprintf('-%d day',$this->module_config->delete_auto_log_record)));
@@ -26,7 +26,7 @@
 		}
 		
 		/**
-		 * @brief API ¼³Á¤
+		 * @brief API ì„¤ì •
 		 */
 		function dispSocialxeAdminSettingApi()
 		{
@@ -35,7 +35,7 @@
 		}
 		
 		/**
-		 * @brief È¯°æ¼³Á¤
+		 * @brief í™˜ê²½ì„¤ì •
 		 */
 		function dispSocialxeAdminSetting()
 		{
@@ -48,17 +48,17 @@
 			$mlayout_list = $oLayoutModel->getLayoutList(0, 'M');
 			Context::set('mlayout_list', $mlayout_list);
 			
-			//½ºÅ²
+			//ìŠ¤í‚¨
             $skin_list = $oModuleModel->getSkins($this->module_path);
             Context::set('skin_list',$skin_list);
 			
-			//¸ð¹ÙÀÏ
+			//ëª¨ë°”ì¼
 			$mskin_list = $oModuleModel->getSkins($this->module_path, "m.skins");
 			Context::set('mskin_list', $mskin_list);
 			
 			Context::set('default_services', $this->default_services);
 			
-			//Ãß°¡Á¤º¸ ÀÔ·Â
+			//ì¶”ê°€ì •ë³´ ìž…ë ¥
 			$input_add_info = array('agreement','user_id','nick_name','require_add_info');
 			Context::set('input_add_info', $input_add_info);
 			
@@ -66,17 +66,17 @@
 		}
 		
 		/**
-		 * @brief ·Î±×±â·Ï
+		 * @brief ë¡œê·¸ê¸°ë¡
 		 */
 		function dispSocialxeAdminLogRecord()
 		{
 		    $oMemberModel = getModel('member');
 			
-			//·Î±× Ä«Å×°í¸®
+			//ë¡œê·¸ ì¹´í…Œê³ ë¦¬
 			$category_list = array('auth_request','register','sns_clear','login','linkage','delete_member','unknown');
             Context::set('category_list', $category_list);
 			
-            //°Ë»ö¿É¼Ç
+            //ê²€ìƒ‰ì˜µì…˜
             $search_option = array('email','nick_name','content','ipaddress');
             Context::set('search_option', $search_option);
 			
@@ -124,7 +124,7 @@
 		}
 		
 		/**
-		 * @brief SNS ¸ñ·Ï
+		 * @brief SNS ëª©ë¡
 		 */
 		function dispSocialxeAdminSnsList()
 		{
@@ -132,7 +132,7 @@
 			
 			Context::set('sns_services', $this->config->sns_services);
 			
-            //°Ë»ö¿É¼Ç
+            //ê²€ìƒ‰ì˜µì…˜
             $search_option = array('nick_name','email');
             Context::set('search_option', $search_option);
 			

@@ -34,7 +34,7 @@
 		}
 		
 		/**
-		 * @brief ¸ğµâ ¼³Ä¡
+		 * @brief ëª¨ë“ˆ ì„¤ì¹˜
 		 */
 		function moduleInstall()
 		{
@@ -45,14 +45,14 @@
 		}
 
 		/**
-		 * @brief ¾÷µ¥ÀÌÆ® Ã¼Å©
+		 * @brief ì—…ë°ì´íŠ¸ ì²´í¬
 		 */
 		function checkUpdate()
 		{
             $oDB = DB::getInstance();
             $oModuleModel = getModel('module');	
 			
-			//Æ®¸®Ä¿ ¼³Ä¡
+			//íŠ¸ë¦¬ì»¤ ì„¤ì¹˜
 			foreach($this->triggers as $trigger)
 			{
 				if(!$oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4])) return true;
@@ -62,7 +62,7 @@
 		}
 
 		/**
-		 * @brief ¾÷µ¥ÀÌÆ®
+		 * @brief ì—…ë°ì´íŠ¸
 		 */
 		function moduleUpdate()
 		{
@@ -70,7 +70,7 @@
             $oModuleModel = getModel('module');
             $oModuleController = getController('module');
 			
-			//Æ®¸®Ä¿ ¼³Ä¡
+			//íŠ¸ë¦¬ì»¤ ì„¤ì¹˜
 			foreach($this->triggers as $trigger)
 			{
 				if(!$oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]))
@@ -83,14 +83,14 @@
 		}
 		
 		/**
-		 * @brief ¸ğµâ»èÁ¦
+		 * @brief ëª¨ë“ˆì‚­ì œ
 		 */
 		function moduleUninstall()
 		{
             $oModuleModel = getModel('module');
             $oModuleController = getController('module');
 			
-			//Æ®¸®Ä¿ »èÁ¦
+			//íŠ¸ë¦¬ì»¤ ì‚­ì œ
 			foreach($this->triggers as $trigger)
 			{
 				if($oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]))
@@ -103,14 +103,14 @@
 		}
 		
 		/**
-		 * @brief Ä³½ÃÆÄÀÏ Àç»ı¼º
+		 * @brief ìºì‹œíŒŒì¼ ì¬ìƒì„±
 		 */
 		function recompileCache()
 		{
 		}
 		
  		/**
-		 *@brief ¼³Á¤
+		 *@brief ì„¤ì •
 		 **/
         function getConfig() 
 		{

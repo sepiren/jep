@@ -15,7 +15,7 @@
 		}
 		
         /**
-         * @brief API º≥¡§
+         * @brief API ÏÑ§Ï†ï
          **/
         function procSocialxeAdminSettingApi() 
 		{
@@ -37,7 +37,7 @@
         }
 		
         /**
-         * @brief »Ø∞Êº≥¡§
+         * @brief ÌôòÍ≤ΩÏÑ§Ï†ï
          **/
         function procSocialxeAdminSetting() 
 		{
@@ -59,7 +59,7 @@
         }
 		
         /**
-         * @brief ∑Œ±◊±‚∑œ ªË¡¶
+         * @brief Î°úÍ∑∏Í∏∞Î°ù ÏÇ≠Ï†ú
          **/
         function procSocialxeAdminDeleteLogRecord() 
 		{
