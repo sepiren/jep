@@ -324,7 +324,7 @@
 			
 			// @jangin.com 검사
 			if(strpos($email, '@jangin.com') === false || $email == ''){
-				$error = '가입 권한이 없는 계정입니다.';
+				$error = '가입 권한이 없는 계정입니다.($email)';
 				$oLibrary->revokeToken();
 			}
 			
