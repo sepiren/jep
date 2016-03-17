@@ -23,6 +23,10 @@
 			$email_address = Context::get('email_address');	
 			if(!$email_address) return new Object(-1, "msg_invalid_request");
 			
+			// @jangin.com 검사
+			if(strpos($email_address, "@jangin.com") === false)
+				$error = 'msg_no_permisson_email_address';
+			
 			$oMemberModel = getModel('member');
 			$member_srl = $oMemberModel->getMemberSrlByEmailAddress($email_address);
 			if($member_srl){

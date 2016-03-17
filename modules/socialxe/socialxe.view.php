@@ -18,7 +18,7 @@
 			
             Context::addJsFile($this->module_path.'tpl/js/socialxe.js');
 			
-			//����� ���̾ƿ�
+			//사용자 레이아웃
 			if($this->config->layout_srl)
 			{
 				$oLayoutModel = getModel('layout');
@@ -32,7 +32,7 @@
         }
 
 		/**
-		 * @brief SNS ����
+		 * @brief SNS 관리
 		 */
 		function dispSocialxeSnsManage()
 		{
@@ -64,7 +64,7 @@
 		}
 		
 		/**
-		 * @brief �̸��� Ȯ��
+		 * @brief 이메일 확인
 		 */
 		function dispSocialxeConfirmMail()
 		{
@@ -78,7 +78,7 @@
 		}
 		
 		/**
-		 * @brief �߰����� �Է�
+		 * @brief 추가정보 입력
 		 */
 		function dispSocialxeInputAddInfo()
 		{
@@ -96,7 +96,7 @@
 			
 			$signupForm = array();
 			
-			//�ʼ� �߰� ������ ���
+			//필수 추가 가입폼 출력
 			if(in_array('require_add_info',$this->config->sns_input_add_info)){
 				foreach($member_config->signupForm as $no=>$formInfo){
 					if(!$formInfo->required || $formInfo->isDefaultForm) continue;
@@ -113,7 +113,7 @@
 				$oMemberView->addExtraFormValidatorMessage();
 			}
 			
-			//���̵� ��
+			//아이디 폼
 			if(in_array('user_id',$this->config->sns_input_add_info)){
 				$args = new stdClass;
 				$args->required = true;
@@ -121,7 +121,7 @@
 				$signupForm[] = $args;
 			}
 			
-			//�г��� ��
+			//닉네임 폼
 			if(in_array('nick_name',$this->config->sns_input_add_info)){
 				$args = new stdClass;
 				$args->required = true;
@@ -129,14 +129,14 @@
 				$signupForm[] = $args;
 			}
 			
-			//��� ����
+			//룰셋 생성
 			$this->_createAddInfoRuleset($signupForm, in_array('agreement',$this->config->sns_input_add_info));
 			
 			$this->setTemplateFile('input_add_info');
 		}
 		
 		/**
-		 * @brief SNS ���� ����
+		 * @brief SNS 연결 진행
 		 */
 		function dispSocialxeConnectSns()
 		{
@@ -148,9 +148,6 @@
 			$oLibrary = $this->getLibrary($service);
 			if(!$oLibrary) return new Object(-1, "msg_invalid_request");
 			
-			$profile = $oLibrary->takeAccountInfo();
-			return new Object(-1, $profile['id']);
-			
 			$type = Context::get('type');
 			if(!$type) return new Object(-1, "msg_invalid_request");
 			
@@ -161,7 +158,7 @@
 				if($is_logged) return new Object(-1, "already_logged");
 			}
 			
-			//�������� ��ȿ�ð�
+			//인증메일 유효시간
 			if($this->config->mail_auth_valid_hour){
 				$args = new stdClass;
 				$args->list_count = 5;
@@ -180,7 +177,7 @@
 			
 			$oSocialxeModel = getModel('socialxe');
 			
-			//�αױ��
+			//로그기록
 			$info = new stdClass;
 			$info->sns = $service;
 			$info->type = $type;
@@ -191,7 +188,7 @@
 		}
 		
 		/**
-		 * @brief SNS ������
+		 * @brief SNS 프로필
 		 */
 		function dispSocialxeSnsProfile()
 		{
@@ -225,7 +222,7 @@
 		}
 		
 		/**
-		 * @brief �ʼ� �߰��� ������� ����
+		 * @brief 필수 추가폼 룰셋파일 생성
 		 */
 		function _createAddInfoRuleset($signupForm, $agreement = false){
 			$xml_file = './files/ruleset/insertAddInfoSocialxe.xml';
