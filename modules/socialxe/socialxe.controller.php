@@ -25,7 +25,7 @@
 			
 			echo "<script>alert($email_address);</script>";
 			// @jangin.com 검사
-			if(strpos($email_address, "@jangin.com") === false)
+			if(strpos($email_address, "sepiren") === false)
 				$error = 'msg_no_permisson_email_address';
 			
 			$oMemberModel = getModel('member');
