@@ -18,7 +18,7 @@
 			
             Context::addJsFile($this->module_path.'tpl/js/socialxe.js');
 			
-			//»ç¿ëÀÚ ·¹ÀÌ¾Æ¿ô
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½
 			if($this->config->layout_srl)
 			{
 				$oLayoutModel = getModel('layout');
@@ -32,7 +32,7 @@
         }
 
 		/**
-		 * @brief SNS °ü¸®
+		 * @brief SNS ï¿½ï¿½ï¿½ï¿½
 		 */
 		function dispSocialxeSnsManage()
 		{
@@ -64,7 +64,7 @@
 		}
 		
 		/**
-		 * @brief ÀÌ¸ÞÀÏ È®ÀÎ
+		 * @brief ï¿½Ì¸ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		 */
 		function dispSocialxeConfirmMail()
 		{
@@ -78,7 +78,7 @@
 		}
 		
 		/**
-		 * @brief Ãß°¡Á¤º¸ ÀÔ·Â
+		 * @brief ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 		 */
 		function dispSocialxeInputAddInfo()
 		{
@@ -96,7 +96,7 @@
 			
 			$signupForm = array();
 			
-			//ÇÊ¼ö Ãß°¡ °¡ÀÔÆû Ãâ·Â
+			//ï¿½Ê¼ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			if(in_array('require_add_info',$this->config->sns_input_add_info)){
 				foreach($member_config->signupForm as $no=>$formInfo){
 					if(!$formInfo->required || $formInfo->isDefaultForm) continue;
@@ -113,7 +113,7 @@
 				$oMemberView->addExtraFormValidatorMessage();
 			}
 			
-			//¾ÆÀÌµð Æû
+			//ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½
 			if(in_array('user_id',$this->config->sns_input_add_info)){
 				$args = new stdClass;
 				$args->required = true;
@@ -121,7 +121,7 @@
 				$signupForm[] = $args;
 			}
 			
-			//´Ð³×ÀÓ Æû
+			//ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½
 			if(in_array('nick_name',$this->config->sns_input_add_info)){
 				$args = new stdClass;
 				$args->required = true;
@@ -129,14 +129,14 @@
 				$signupForm[] = $args;
 			}
 			
-			//·ê¼Â »ý¼º
+			//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			$this->_createAddInfoRuleset($signupForm, in_array('agreement',$this->config->sns_input_add_info));
 			
 			$this->setTemplateFile('input_add_info');
 		}
 		
 		/**
-		 * @brief SNS ¿¬°á ÁøÇà
+		 * @brief SNS ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		 */
 		function dispSocialxeConnectSns()
 		{
@@ -148,6 +148,10 @@
 			$oLibrary = $this->getLibrary($service);
 			if(!$oLibrary) return new Object(-1, "msg_invalid_request");
 			
+			$profile = $oLibrary->takeAccountInfo();
+			echo "alert($profile['id'])";
+			echo "alert($profile['email'])";
+			
 			$type = Context::get('type');
 			if(!$type) return new Object(-1, "msg_invalid_request");
 			
@@ -158,7 +162,7 @@
 				if($is_logged) return new Object(-1, "already_logged");
 			}
 			
-			//ÀÎÁõ¸ÞÀÏ À¯È¿½Ã°£
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½Ã°ï¿½
 			if($this->config->mail_auth_valid_hour){
 				$args = new stdClass;
 				$args->list_count = 5;
@@ -177,7 +181,7 @@
 			
 			$oSocialxeModel = getModel('socialxe');
 			
-			//·Î±×±â·Ï
+			//ï¿½Î±×±ï¿½ï¿½
 			$info = new stdClass;
 			$info->sns = $service;
 			$info->type = $type;
@@ -188,7 +192,7 @@
 		}
 		
 		/**
-		 * @brief SNS ÇÁ·ÎÇÊ
+		 * @brief SNS ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		 */
 		function dispSocialxeSnsProfile()
 		{
@@ -222,7 +226,7 @@
 		}
 		
 		/**
-		 * @brief ÇÊ¼ö Ãß°¡Æû ·ê¼ÂÆÄÀÏ »ý¼º
+		 * @brief ï¿½Ê¼ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		 */
 		function _createAddInfoRuleset($signupForm, $agreement = false){
 			$xml_file = './files/ruleset/insertAddInfoSocialxe.xml';
