@@ -58,8 +58,8 @@
 				$msg = $error;
 				if($errorCode == -12){
 					Context::set('xe_validator_id', '');
-// 					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
-					$redirect_url = getNotEncodedUrl('mid', 'index');
+					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
+// 					$redirect_url = getNotEncodedUrl('mid', 'index');
 				}else{
 					$_SESSION['tmp_socialxe_confirm_email'] = $_SESSION['socialxe_confirm_email'];
 					$this->setError(-1);
@@ -349,7 +349,8 @@
 				$msg = $error;
 				$this->setError(-1);
 				if($type == 'login'){
-					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
+// 					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
+					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', '');
 				}
 			}
 			
