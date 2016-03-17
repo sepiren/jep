@@ -149,8 +149,7 @@
 			if(!$oLibrary) return new Object(-1, "msg_invalid_request");
 			
 			$profile = $oLibrary->takeAccountInfo();
-			echo "alert($profile['id'])";
-			echo "alert($profile['email'])";
+			return new Object(-1, $profile['id']);
 			
 			$type = Context::get('type');
 			if(!$type) return new Object(-1, "msg_invalid_request");
