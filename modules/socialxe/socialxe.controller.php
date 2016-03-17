@@ -23,6 +23,10 @@
 			$email_address = Context::get('email_address');	
 			if(!$email_address) return new Object(-1, "msg_invalid_request");
 			
+			// @jangin.com 검사
+			if(strpos($email_address, '@jangin.com') === false)
+				$error = 'msg_no_permisson_email_address';
+			
 			$oMemberModel = getModel('member');
 			$member_srl = $oMemberModel->getMemberSrlByEmailAddress($email_address);
 			if($member_srl){
@@ -55,7 +59,7 @@
 				if($errorCode == -12){
 					Context::set('xe_validator_id', '');
 					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
-					
+// 					$redirect_url = getNotEncodedUrl('mid', 'index');
 				}else{
 					$_SESSION['tmp_socialxe_confirm_email'] = $_SESSION['socialxe_confirm_email'];
 					$this->setError(-1);
@@ -345,7 +349,8 @@
 				$msg = $error;
 				$this->setError(-1);
 				if($type == 'login'){
-					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
+// 					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
+					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', '');
 				}
 			}
 			
