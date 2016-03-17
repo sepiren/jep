@@ -122,7 +122,8 @@ if($__Context->val1['selected'] && $__Context->val1['list']){ ?><ul>
 <!-- 로그인 세션이 없을 경우 로그인 창 -->
 <?php if(!$__Context->is_logged){ ?><div>
 <?php if(!$__Context->act){ ?><div>
-<a href="http://ep.jangin.com/?act=dispSocialxeConnectSns&type=login&service=google">구글 로그인</a>
+<p><a href="http://ep.jangin.com/?act=dispSocialxeConnectSns&type=login&service=google">구글 로그인</a></p>
+<p><a href="http://ep.jangin.com/?mid=index&act=dispMemberLoginForm">관리자 로그인</a></p>
 </div><?php } ?>
 <?php if($__Context->act){ ?><div>
  <div id="container">

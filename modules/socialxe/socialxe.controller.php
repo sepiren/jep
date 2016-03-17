@@ -14,7 +14,7 @@
 		}
 		
 		/**
-		 * @brief ÀÌ¸ÞÀÏ È®ÀÎ
+		 * @brief ì´ë©”ì¼ í™•ì¸
 		 */
 		function procSocialxeConfirmMail()
 		{
@@ -49,7 +49,7 @@
 				}
 			}
 			
-			//¿¡·¯
+			//ì—ëŸ¬
 			if($error){
 				$msg = $error;
 				if($errorCode == -12){
@@ -67,7 +67,7 @@
 			
 			$oSocialxeModel = getModel('socialxe');
 			
-			//·Î±×±â·Ï
+			//ë¡œê·¸ê¸°ë¡
 			$info = new stdClass;
 			$info->msg = $msg;
 			$info->sns = $saved['service'];
@@ -82,7 +82,7 @@
 		}
 		
 		/**
-		 * @brief Ãß°¡Á¤º¸ ÀÔ·Â
+		 * @brief ì¶”ê°€ì •ë³´ ìž…ë ¥
 		 */
 		function procSocialxeInputAddInfo()
 		{
@@ -95,7 +95,7 @@
 			$oMemberModel = getModel('member');
 			$signupForm = array();
 			
-			//ÇÊ¼ö Ãß°¡ °¡ÀÔÆû
+			//í•„ìˆ˜ ì¶”ê°€ ê°€ìž…í¼
 			if(in_array('require_add_info',$this->config->sns_input_add_info)){
 				$member_config = $oMemberModel->getMemberConfig();
 				
@@ -105,7 +105,7 @@
 				}
 			}
 			
-			//¾ÆÀÌµð Æû
+			//ì•„ì´ë”” í¼
 			if(in_array('user_id',$this->config->sns_input_add_info)){
 				$signupForm[] = 'user_id';
 				
@@ -115,7 +115,7 @@
 				} 
 			}
 			
-			//´Ð³×ÀÓ Æû
+			//ë‹‰ë„¤ìž„ í¼
 			if(in_array('nick_name',$this->config->sns_input_add_info)){
 				$signupForm[] = 'nick_name';
 				
@@ -125,12 +125,12 @@
 				} 
 			}
 			
-			//¾à°ü µ¿ÀÇ
+			//ì•½ê´€ ë™ì˜
 			if(in_array('agreement',$this->config->sns_input_add_info)){
 				$signupForm[] = 'accept_agreement';
 			}
 			
-			//Ãß°¡Á¤º¸ ÀúÀå
+			//ì¶”ê°€ì •ë³´ ì €ìž¥
 			$add_data = array();
 			foreach($signupForm as $val)
 			{
@@ -153,7 +153,7 @@
 				}
 			}
 			
-			//¿¡·¯
+			//ì—ëŸ¬
 			if($error){
 				$msg = $error;
 				$this->setError(-1);
@@ -166,7 +166,7 @@
 			
 			$oSocialxeModel = getModel('socialxe');
 			
-			//·Î±×±â·Ï
+			//ë¡œê·¸ê¸°ë¡
 			$info = new stdClass;
 			$info->msg = $msg;
 			$info->sns = $saved['service'];
@@ -181,7 +181,7 @@
 		}
 		
  		/**
-		 *@brief SNS ÇØÁ¦
+		 *@brief SNS í•´ì œ
 		 **/
         function procSocialxeSnsClear()
 		{
@@ -214,10 +214,10 @@
 			$output = executeQuery('socialxe.deleteMemberSns', $args);
 			if(!$output->toBool()) return $output;			
 			
-			//ÅäÅ« ÆÄ±â
+			//í† í° íŒŒê¸°
 			$oLibrary->revokeToken();
 			
-			//·Î±×±â·Ï
+			//ë¡œê·¸ê¸°ë¡
 			$info = new stdClass;
 			$info->sns = $service;
 			$oSocialxeModel->logRecord($this->act, $info);
@@ -229,7 +229,7 @@
         }
 		
  		/**
-		 *@brief SNS ¿¬µ¿¼³Á¤
+		 *@brief SNS ì—°ë™ì„¤ì •
 		 **/
         function procSocialxeSnsLinkage()
 		{
@@ -264,7 +264,7 @@
 			$output = executeQuery('socialxe.updateMemberSns', $args);
 			if(!$output->toBool()) return $output;
 			
-			//·Î±×±â·Ï
+			//ë¡œê·¸ê¸°ë¡
 			$info = new stdClass;
 			$info->sns = $service;
 			$info->linkage = $args->linkage;
@@ -299,13 +299,13 @@
 				$redirect_url = Context::getRequestUri();
 			}
 			
-			//ÀÎÁõÁøÇà
+			//ì¸ì¦ì§„í–‰
 			$output = $oLibrary->authenticate();
 			if(!$output->toBool()){
 				$error = $output->getMessage();
 			}
 			
-			//ÇÁ·ÎÇÊ °¡Á®¿À±â
+			//í”„ë¡œí•„ ê°€ì ¸ì˜¤ê¸°
 			if(!$error){
 				$output = $oLibrary->setProfile();
 				if(!$output->toBool()){
@@ -313,7 +313,7 @@
 				}
 			}
 			
-			//µî·ÏÃ³¸®
+			//ë“±ë¡ì²˜ë¦¬
 			if(!$error){
 				if($type == 'register'){
 					$msg = 'msg_success_sns_register';
@@ -329,7 +329,7 @@
 						$error = $output->getMessage();
 					}
 					
-					//·Î±×ÀÎÈÄ ÆäÀÌÁö ÀÌµ¿(È¸¿ø¼³Á¤ ÂüÁ¶)
+					//ë¡œê·¸ì¸í›„ íŽ˜ì´ì§€ ì´ë™(íšŒì›ì„¤ì • ì°¸ì¡°)
 					$oModuleModel = getModel('module');
 					$member_config = $oModuleModel->getModuleConfig('member');
 					if(!$member_config->after_login_url){
@@ -340,7 +340,7 @@
 				}
 			}
 			
-			//¿¡·¯
+			//ì—ëŸ¬
 			if($error){
 				$msg = $error;
 				$this->setError(-1);
@@ -351,7 +351,7 @@
 			
 			$oSocialxeModel = getModel('socialxe');
 			
-			//·Î±×±â·Ï
+			//ë¡œê·¸ê¸°ë¡
 			$info = new stdClass;
 			$info->sns = $service;
 			$info->msg = $msg;
@@ -367,11 +367,11 @@
         }
 		
  		/**
-		 *@brief module Handler Æ®¸®°Å
+		 *@brief module Handler íŠ¸ë¦¬ê±°
 		 **/
         function triggerModuleHandler(&$obj)
 		{
-			//SNS ·Î±×ÀÎ Á¤º¸ Ãß°¡
+			//SNS ë¡œê·¸ì¸ ì •ë³´ ì¶”ê°€
 			if($_SESSION['sns_login']){
 				$logged_info = Context::get('logged_info');
 				$logged_info->sns_login = $_SESSION['sns_login'];
@@ -407,7 +407,7 @@
         }
 		
  		/**
-		 *@brief module Object Before Æ®¸®°Å
+		 *@brief module Object Before íŠ¸ë¦¬ê±°
 		 **/
         function triggerModuleObjectBefore(&$obj)
 		{
@@ -461,7 +461,7 @@
         }
 		
  		/**
-		 *@brief module Object After Æ®¸®°Å
+		 *@brief module Object After íŠ¸ë¦¬ê±°
 		 **/
         function triggerModuleObjectAfter(&$obj)
 		{
@@ -475,7 +475,7 @@
 				$template_path = sprintf("%sskins/%s/",$this->module_path, $this->config->skin);
 			}
 			
-			//·Î±×ÀÎ ÆäÀÌÁö
+			//ë¡œê·¸ì¸ íŽ˜ì´ì§€
 			if($obj->act == 'dispMemberLoginForm' && (Context::get('mode') != 'default' || $this->config->default_login != 'Y')){
 				if(Context::get('is_logged')){
 					$obj->setRedirectUrl(getNotEncodedUrl('act',''));
@@ -494,7 +494,7 @@
 				}
 				Context::set('sns_services', $sns_services);
 			
-			//ÀÎÁõ¸ÞÀÏ Àç¹ß¼Û
+			//ì¸ì¦ë©”ì¼ ìž¬ë°œì†¡
 			}elseif($obj->act == 'procMemberResetAuthMail'){
 				$redirect_url = getNotEncodedUrl('', 'act', 'dispMemberLoginForm');
 				$obj->setRedirectUrl($redirect_url);
@@ -511,7 +511,7 @@
 					$obj->setTemplatePath($template_path);
 					$obj->setTemplateFile('delete_member');
 					
-				//ºñ¹Ð¹øÈ£ Áú¹® Á¦°Å
+				//ë¹„ë°€ë²ˆí˜¸ ì§ˆë¬¸ ì œê±°
 				}elseif($obj->act == 'dispMemberModifyInfo'){
 					$formTags = Context::get('formTags');
 					$new_formTags = array();
@@ -523,7 +523,7 @@
 				}
 			}
 			
-			//°ü¸®ÀÚ È¸¿øÁ¤º¸ ¼öÁ¤ SNS Ç×¸ñ»ðÀÔ
+			//ê´€ë¦¬ìž íšŒì›ì •ë³´ ìˆ˜ì • SNS í•­ëª©ì‚½ìž…
 			if($obj->act == 'dispMemberAdminInsert' && Context::get('member_srl')){
 				$member_srl = Context::get('member_srl');
 				$sns_user = $oSocialxeModel->memberUserSns($member_srl);
@@ -557,7 +557,7 @@
         }
 		
         /**
-         * @brief display Æ®¸®°Å
+         * @brief display íŠ¸ë¦¬ê±°
          **/
         function triggerDisplay(&$output)
 		{
@@ -583,14 +583,14 @@
 						$output = preg_replace('/(\<a[^\>]*?dispMemberLeave[^\>]*?\>)[^\<]*?(\<\/a\>)/is', sprintf('$1%s$2', Context::getLang('delete_member_info')), $output);
 					}
 					
-				//ºñ¹Ð¹øÈ£ Áú¹® Á¦°Å
+				//ë¹„ë°€ë²ˆí˜¸ ì§ˆë¬¸ ì œê±°
 				}elseif(Context::get('act') == 'dispMemberModifyInfo'){
 					$acode = cut_str(md5(date('YmdHis')), 13, '');
 					$output = preg_replace('/(\<input[^\>]*?value\=\"procMemberModifyInfo\"[^\>]*?\>)/is', sprintf('$1<input type="hidden" name="find_account_question" value="1" /><input type="hidden" name="find_account_answer" value="%s" />',$acode), $output);
 				}
 			}
 			
-			//°ü¸®ÀÚ È¸¿øÁ¤º¸ ¼öÁ¤
+			//ê´€ë¦¬ìž íšŒì›ì •ë³´ ìˆ˜ì •
 			if(Context::get('act') == 'dispMemberAdminInsert' && Context::get('member_srl')){
 				$member_srl = Context::get('member_srl');
 				$sns_user = $oSocialxeModel->memberUserSns($member_srl);
@@ -605,13 +605,13 @@
 		}
 		
  		/**
-		 *@brief ¹®¼­µî·Ï Æ®¸®°Å
+		 *@brief ë¬¸ì„œë“±ë¡ íŠ¸ë¦¬ê±°
 		 **/
         function triggerInsertDocumentAfter($obj) 
 		{
 			if(!Context::get('is_logged')) return new Object();
 			
-			//¼³Á¤µÈ ¸ðµâ Á¦¿Ü
+			//ì„¤ì •ëœ ëª¨ë“ˆ ì œì™¸
 			if($this->config->linkage_module_srl){
 				$module_srl_list = explode(',',$this->config->linkage_module_srl);
 				if($this->config->linkage_module_target=='exclude' && in_array($obj->module_srl, $module_srl_list)) return new Object();
@@ -638,7 +638,7 @@
 				$args->url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
 				$oLibrary->insertActivities($args);
 				
-				//·Î±×±â·Ï
+				//ë¡œê·¸ê¸°ë¡
 				$info = new stdClass;
 				$info->sns = $val;
 				$info->title = $obj->title;
@@ -649,15 +649,15 @@
 		}
 		
  		/**
-		 *@brief È¸¿øµî·Ï Æ®¸®°Å
+		 *@brief íšŒì›ë“±ë¡ íŠ¸ë¦¬ê±°
 		 **/
         function triggerInsertMember(&$config) 
 		{
-			//ÀÌ¸ÞÀÏ ÁÖ¼Ò È®ÀÎ
+			//ì´ë©”ì¼ ì£¼ì†Œ í™•ì¸
 			if(Context::get('act') == 'procSocialxeConfirmMail'){
 				$config->enable_confirm = 'Y';
 				
-			//SNS ·Î±×ÀÎ½Ã¿¡ ¸ÞÀÏÀÎÁõÀ» »ç¿ë¾ÈÇÔ
+			//SNS ë¡œê·¸ì¸ì‹œì— ë©”ì¼ì¸ì¦ì„ ì‚¬ìš©ì•ˆí•¨
 			}elseif(Context::get('act') == 'procSocialxeCallback' || Context::get('act') == 'procSocialxeInputAddInfo'){
 				$config->enable_confirm = 'N';
 			}
@@ -666,7 +666,7 @@
 		}
 		
  		/**
-		 *@brief È¸¿ø¸Þ´º ÆË¾÷ Æ®¸®°Å
+		 *@brief íšŒì›ë©”ë‰´ íŒì—… íŠ¸ë¦¬ê±°
 		 **/
 		function triggerMemberMenu()
 		{
@@ -688,7 +688,7 @@
 		}
 		
  		/**
-		 *@brief È¸¿ø»èÁ¦ Æ®¸®°Å
+		 *@brief íšŒì›ì‚­ì œ íŠ¸ë¦¬ê±°
 		 **/
         function triggerDeleteMember($obj) 
 		{
@@ -705,7 +705,7 @@
 				$oLibrary->setRefreshToken($val->refresh_token);
 				$oLibrary->setAccessToken($val->access_token);
 				
-				//ÅäÅ« ÆÄ±â
+				//í† í° íŒŒê¸°
 				$oLibrary->revokeToken();
 			}
 			
@@ -714,7 +714,7 @@
 			$oSocialxeModel = getModel('socialxe');
 			$logged_info = Context::get('logged_info');
 			
-			//·Î±×±â·Ï
+			//ë¡œê·¸ê¸°ë¡
 			$info = new stdClass;
 			$info->sns_id = implode(' | ', $sns_id);
 			$info->nick_name = $logged_info->nick_name;
@@ -725,7 +725,7 @@
 		}
 		
  		/**
-		 *@brief SNS µî·Ï
+		 *@brief SNS ë“±ë¡
 		 **/
         function registerSns($oLibrary, $member_srl = null)
 		{
@@ -737,7 +737,7 @@
 			
 			if(!$oLibrary->getId()) return new Object(-1, "msg_errer_api_connect");
 			
-			//SNS °èÁ¤ ÀÎÁõ»óÅÂ Ã¼Å©
+			//SNS ê³„ì • ì¸ì¦ìƒíƒœ ì²´í¬
 			if(!$oLibrary->getVerified()) return new Object(-1, "msg_not_sns_verified");
 			
 			$id = $oLibrary->getId();
@@ -747,13 +747,13 @@
 			$sns_info = $oSocialxeModel->getMemberSnsById($id, $service);
 			if($sns_info) return new Object(-1, "msg_already_registed_sns");
 			
-			//Áßº¹ ÀÌ¸ÞÀÏ °èÁ¤ÀÌ ÀÖÀ¸¸é ±× °èÁ¤À¸·Î ·Î±×ÀÎ
+			//ì¤‘ë³µ ì´ë©”ì¼ ê³„ì •ì´ ìžˆìœ¼ë©´ ê·¸ ê³„ì •ìœ¼ë¡œ ë¡œê·¸ì¸
 			$oMemberModel = getModel('member');
 			$email = $oLibrary->getEmail();
 			if(!$member_srl && $email && !$_SESSION['socialxe_confirm_email']){
 				$member_srl = $oMemberModel->getMemberSrlByEmailAddress($email);
 				if($member_srl){
-					//´Ü, °ü¸®ÀÚ °èÁ¤Àº º¸¾È¹®Á¦·Î Á¦¿Ü.
+					//ë‹¨, ê´€ë¦¬ìž ê³„ì •ì€ ë³´ì•ˆë¬¸ì œë¡œ ì œì™¸.
 					$member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
 					if($member_info->is_admin == 'Y'){
 						unset($member_srl);
@@ -764,7 +764,7 @@
 				} 
 			}
 			
-			//È¸¿ø°¡ÀÔ
+			//íšŒì›ê°€ìž…
 			if(!$member_srl){
 				$password = cut_str(md5(date('YmdHis')), 13, '');
 				$nick_name = preg_replace('/[\pZ\pC]+/u', '', $oLibrary->getName());
@@ -775,7 +775,7 @@
 					$nick_name = $nick_name.date('is');
 				}
 				
-				//Ãß°¡Á¤º¸¹ÞÀ½
+				//ì¶”ê°€ì •ë³´ë°›ìŒ
 				if($this->config->sns_input_add_info[0] && !$_SESSION['socialxe_input_add_info_data']){
 					$_SESSION['tmp_socialxe_input_add_info'] = $oLibrary->get();
 					$_SESSION['tmp_socialxe_input_add_info']['nick_name'] = $nick_name;
@@ -783,7 +783,7 @@
 					return $this->setRedirectUrl($redirect_url, new Object(-1,'sns_input_add_info'));
 				}
 				
-				//ÀÌ¸ÞÀÏ È®ÀÎ¹ÞÀ½
+				//ì´ë©”ì¼ í™•ì¸ë°›ìŒ
 				if(!$email){
 					$_SESSION['tmp_socialxe_confirm_email'] = $oLibrary->get();
 					$redirect_url = getNotEncodedUrl('', 'act', 'dispSocialxeConfirmMail');
@@ -804,7 +804,7 @@
 					Context::set('birthday', $extend->birthday, true);
 					Context::set('gender', $extend->gender, true);
 					
-					//Ãß°¡Á¤º¸
+					//ì¶”ê°€ì •ë³´
 					$add_data = $_SESSION['socialxe_input_add_info_data'];
 					if($add_data)
 					{
@@ -830,7 +830,7 @@
 				$member_srl = $oMemberModel->getMemberSrlByEmailAddress($email);
 				if(!$member_srl) return new Object(-1, "msg_error_register_sns");
 				
-				//ÀÌÀü ·Î±×ÀÎ ±â·ÏÀÌ ÀÖÀ¸¸é °¡ÀÔ Æ÷ÀÎÆ® Á¦°Å
+				//ì´ì „ ë¡œê·¸ì¸ ê¸°ë¡ì´ ìžˆìœ¼ë©´ ê°€ìž… í¬ì¸íŠ¸ ì œê±°
 				$sns_user = $oSocialxeModel->getSnsUser($id, $service);
 				if($sns_user){
 					$PHC_member_srl = $member_srl;
@@ -864,7 +864,7 @@
 					}
 				}
 				
-			//sns µî·Ï
+			//sns ë“±ë¡
 			}else{
 				$sns_info = $oSocialxeModel->getMemberSns($service, $member_srl);
 				if($sns_info) return new Object(-1, "msg_invalid_request");
@@ -884,7 +884,7 @@
 			$output = executeQuery('socialxe.insertMemberSns', $args);
 			if(!$output->toBool()) return $output;
 			
-			//SNS ID µû·Î ±â·Ï. (SNS Á¤º¸°¡ »èÁ¦ µÇ´õ¶óµµ ¿µ±¸º¸°ü)
+			//SNS ID ë”°ë¡œ ê¸°ë¡. (SNS ì •ë³´ê°€ ì‚­ì œ ë˜ë”ë¼ë„ ì˜êµ¬ë³´ê´€)
 			$sns_user = $oSocialxeModel->getSnsUser($id, $service);
 			if(!$sns_user){
 				$output = executeQuery('socialxe.insertSnsUser', $args);
@@ -902,7 +902,7 @@
         }
 		
  		/**
-		 *@brief SNS ·Î±×ÀÎ
+		 *@brief SNS ë¡œê·¸ì¸
 		 **/
         function LoginSns($oLibrary)
 		{
@@ -911,7 +911,7 @@
 			
 			if(!$oLibrary->getId()) return new Object(-1, "msg_errer_api_connect");
 			
-			//SNS °èÁ¤ ÀÎÁõ»óÅÂ Ã¼Å©
+			//SNS ê³„ì • ì¸ì¦ìƒíƒœ ì²´í¬
 			if(!$oLibrary->getVerified()) return new Object(-1, "msg_not_sns_verified");
 			
 			$id = $oLibrary->getId();
@@ -925,7 +925,7 @@
 				$oMemberModel = getModel('member');
 				$member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
 				
-				//ÀÎÁõ¸ÞÀÏ
+				//ì¸ì¦ë©”ì¼
 				if($member_info->denied == 'Y'){
 					$args = new stdClass;
 					$args->member_srl = $member_srl;
@@ -948,7 +948,7 @@
 				$output = $oMemberController->doLogin($user_id, '', $this->config->sns_keep_signed=='Y'?true:false);
 				if(!$output->toBool()) return $output;
 				
-				//SNS ¼¼¼Ç
+				//SNS ì„¸ì…˜
 				$_SESSION['sns_login'] = $service;
 				
 				$args = new stdClass;
@@ -964,7 +964,7 @@
 				$output = executeQuery('socialxe.updateMemberSns', $args);
 				if(!$output->toBool()) return $output;
 				
-				//SNS µî·Ï
+				//SNS ë“±ë¡
 			}else{
 				$output = $this->registerSns($oLibrary);
 				if(!$output->toBool()) return $output;
