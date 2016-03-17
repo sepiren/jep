@@ -23,11 +23,6 @@
 			$email_address = Context::get('email_address');	
 			if(!$email_address) return new Object(-1, "msg_invalid_request");
 			
-			// @jangin.com 검사
-			if(strpos($email_address, '@jangin.com') === false){
-				$error = 'msg_exists_email_address';
-			}
-			
 			$oMemberModel = getModel('member');
 			$member_srl = $oMemberModel->getMemberSrlByEmailAddress($email_address);
 			if($member_srl){
@@ -316,6 +311,21 @@
 				if(!$output->toBool()){
 					$error = $output->getMessage();
 				}
+			}
+			
+			$profile = $oLibrary->takeAccountInfo();
+			$email = '';
+			foreach($profile['emails'] as $key=> $val){
+				if($val['type'] == 'account'){
+					$email = $val['value'];
+					break;
+				}
+			}
+			
+			// @jangin.com 검사
+			if(strpos($profile['email'], '@jangin.com') === false || $email == ''){
+				$error = 'msg_no_permission_email_address';
+				$oLibrary->revokeToken();
 			}
 			
 			//등록처리
