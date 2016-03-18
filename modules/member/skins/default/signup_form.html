@@ -1,8 +1,8 @@
-<!-- <load target="../../tpl/js/signup_check.js" /> -->
-<!-- <!--// datepicker javascript plugin load --> -->
-<!-- <!--%load_js_plugin("ui")--> -->
-<!-- <!--%load_js_plugin("ui.datepicker")--> -->
-<!-- <include target="./common_header.html" /> -->
+<load target="../../tpl/js/signup_check.js" />
+<!--// datepicker javascript plugin load -->
+<!--%load_js_plugin("ui")-->
+<!--%load_js_plugin("ui.datepicker")-->
+<include target="./common_header.html" />
 <!--     <h1 style="border-bottom:1px solid #ccc">{$lang->cmd_signup}</h1> -->
 <!-- 	<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/member/skins'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}"> -->
 <!-- 		<p>{$XE_VALIDATOR_MESSAGE}</p> -->
@@ -63,31 +63,31 @@
 <!-- 			<a href="{getUrl('act','','member_srl','')}" class="btn pull-left">{$lang->cmd_cancel}</a> -->
 <!-- 		</div> -->
 <!-- 	</form> -->
-<!-- <script> -->
-<!-- jQuery(function($){ -->
-<!-- 	// label for setup -->
-<!-- 	$('.control-label[for]').each(function(){ -->
-<!-- 		var $this = $(this); -->
-<!-- 		if($this.attr('for') == ''){ -->
-<!-- 			$this.attr('for', $this.next().children(':visible:first').attr('id')); -->
-<!-- 		} -->
-<!-- 	}); -->
-<!-- }); -->
-<!-- (function($){ -->
-<!-- 	$(function(){ -->
-<!-- 		var option = { changeMonth: true, changeYear: true, gotoCurrent: false,yearRange:'-100:+10', dateFormat:'yy-mm-dd', onSelect:function(){ -->
+<script>
+jQuery(function($){
+	// label for setup
+	$('.control-label[for]').each(function(){
+		var $this = $(this);
+		if($this.attr('for') == ''){
+			$this.attr('for', $this.next().children(':visible:first').attr('id'));
+		}
+	});
+});
+(function($){
+	$(function(){
+		var option = { changeMonth: true, changeYear: true, gotoCurrent: false,yearRange:'-100:+10', dateFormat:'yy-mm-dd', onSelect:function(){
 
-<!-- 			$(this).prev('input[type="hidden"]').val(this.value.replace(/-/g,""))} -->
-<!-- 		}; -->
-<!-- 		$.extend(option,$.datepicker.regional['{$lang_type}']); -->
-<!-- 		$(".inputDate").datepicker(option); -->
-<!-- 		$(".dateRemover").click(function() { -->
-<!-- 			$(this).prevAll('input').val(''); -->
-<!-- 			return false;}); -->
-<!-- 	}); -->
-<!-- })(jQuery); -->
-<!-- </script> -->
-<!-- <include target="./common_footer.html" /> -->
+			$(this).prev('input[type="hidden"]').val(this.value.replace(/-/g,""))}
+		};
+		$.extend(option,$.datepicker.regional['{$lang_type}']);
+		$(".inputDate").datepicker(option);
+		$(".dateRemover").click(function() {
+			$(this).prevAll('input').val('');
+			return false;});
+	});
+})(jQuery);
+</script>
+<include target="./common_footer.html" />
 
 <div>
 회원가입이 불가능합니다. 관리자에게 문의하세요.
