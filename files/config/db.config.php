@@ -25,7 +25,7 @@ $db_info = (object)array (
   ),
   'default_url' => 'http://ep.jangin.com/',
   'use_mobile_view' => 'Y',
-  'use_rewrite' => 'N',
+  'use_rewrite' => 'Y',
   'time_zone' => '+0900',
   'use_prepared_statements' => 'Y',
   'qmail_compatibility' => 'N',

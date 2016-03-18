@@ -4,12 +4,12 @@ $query->setQueryId("getLayout");
 $query->setAction("select");
 $query->setPriority("");
 
-${'layout_srl5_argument'} = new ConditionArgument('layout_srl', $args->layout_srl, 'equal');
-${'layout_srl5_argument'}->checkFilter('number');
-${'layout_srl5_argument'}->checkNotNull();
-${'layout_srl5_argument'}->createConditionValue();
-if(!${'layout_srl5_argument'}->isValid()) return ${'layout_srl5_argument'}->getErrorMessage();
-if(${'layout_srl5_argument'} !== null) ${'layout_srl5_argument'}->setColumnType('number');
+${'layout_srl13_argument'} = new ConditionArgument('layout_srl', $args->layout_srl, 'equal');
+${'layout_srl13_argument'}->checkFilter('number');
+${'layout_srl13_argument'}->checkNotNull();
+${'layout_srl13_argument'}->createConditionValue();
+if(!${'layout_srl13_argument'}->isValid()) return ${'layout_srl13_argument'}->getErrorMessage();
+if(${'layout_srl13_argument'} !== null) ${'layout_srl13_argument'}->setColumnType('number');
 
 $query->setColumns(array(
 new StarExpression()
@@ -19,7 +19,7 @@ new Table('`xe_layouts`', '`layouts`')
 ));
 $query->setConditions(array(
 new ConditionGroup(array(
-new ConditionWithArgument('`layout_srl`',$layout_srl5_argument,"equal")))
+new ConditionWithArgument('`layout_srl`',$layout_srl13_argument,"equal")))
 ));
 $query->setGroups(array());
 $query->setOrder(array());

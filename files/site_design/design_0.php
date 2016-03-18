@@ -1,6 +1,6 @@
 <?php if(!defined("__XE__")) exit();
 $designInfo = new stdClass;
-$designInfo->layout_srl = 131; 
+$designInfo->layout_srl = 151; 
 $designInfo->mlayout_srl = 90;
 $designInfo->module = new stdClass;
 $designInfo->module->page = new stdClass;

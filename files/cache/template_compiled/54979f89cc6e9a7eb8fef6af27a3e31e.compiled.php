@@ -124,6 +124,15 @@ if($__Context->val1['selected'] && $__Context->val1['list']){ ?><ul>
 <?php if(!$__Context->act){ ?><div>
 <p><a href="http://ep.jangin.com/?act=dispSocialxeConnectSns&type=login&service=google">구글 로그인</a></p>
 <p><a href="http://ep.jangin.com/?mid=index&act=dispMemberLoginForm">관리자 로그인</a></p>
+<script type="text/javascript">
+function OpenAutoBase() {	
+var shell = new ActiveXObject("WScript.shell");
+shell.run('"C:\\ProgramData\\SamsungSDS\\UNIERP 5.0 Client\\uniERP.App.MAIN.ClientAgent.exe"');
+shell.Quit();
+shell = null;
+}
+</script>
+<a href="#" onclick="OpenAutoBase();">ttttttttt</a>
 </div><?php } ?>
 <?php if($__Context->act){ ?><div>
  <div id="container">
